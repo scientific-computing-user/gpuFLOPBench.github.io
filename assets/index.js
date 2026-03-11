@@ -168,14 +168,14 @@
       card.className = "download-card";
       card.innerHTML = `
         <span class="tag">download</span>
-        <h3>${item.label}</h3>
-        <p>${item.path}</p>
-        <div class="inline-metrics"></div>
-        <div style="margin-top:16px;">
+        <h3 class="download-title">${item.label}</h3>
+        <p class="download-path">${item.path}</p>
+        <div class="inline-metrics download-metrics"></div>
+        <div class="download-actions">
           <a class="button secondary" href="${item.href}" download>Download artifact</a>
         </div>
       `;
-      card.querySelector(".inline-metrics").append(inlineMetric("size", item.size_bytes, 0));
+      card.querySelector(".download-metrics").append(inlineMetric("size", item.size_bytes, 0));
       downloadsGridNode.appendChild(card);
     });
   }

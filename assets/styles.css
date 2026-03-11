@@ -448,6 +448,12 @@ main {
   background: linear-gradient(180deg, rgba(10, 20, 36, 0.82), rgba(6, 13, 24, 0.9));
 }
 
+.download-card {
+  display: grid;
+  grid-template-rows: auto minmax(82px, auto) minmax(104px, auto) auto auto;
+  align-content: start;
+}
+
 .status-pill,
 .tag {
   display: inline-flex;
@@ -497,6 +503,19 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
+}
+
+.download-title,
+.download-path {
+  min-height: 0;
+}
+
+.download-metrics {
+  margin-top: 14px;
+}
+
+.download-actions {
+  margin-top: 16px;
 }
 
 .reading-guide {
