@@ -34,6 +34,7 @@
   const rooflineNode = document.getElementById("rooflineChart");
   const rooflineSummaryNode = document.getElementById("rooflineSummary");
   const rooflineReferenceSummaryNode = document.getElementById("rooflineReferenceSummary");
+  const rooflineReferencePreviewNode = document.getElementById("rooflineReferencePreview");
   const rooflineReferenceCountNode = document.getElementById("rooflineReferenceCount");
   const rooflineSpecGridNode = document.getElementById("rooflineSpecGrid");
   const rooflineDetailSummaryNode = document.getElementById("rooflineDetailSummary");
@@ -223,6 +224,7 @@
     const secondaryPrecision = selectedPrecision === "fp32" ? "fp16" : "fp32";
     const specs = meta.roofline_specs.filter((spec) => rooflineDevice.value === "all" || spec.device === rooflineDevice.value);
     rooflineSpecGridNode.innerHTML = "";
+    rooflineReferencePreviewNode.innerHTML = "";
     rooflineReferenceCountNode.textContent = String(specs.length);
 
     if (!specs.length) {
@@ -236,6 +238,23 @@
         : `${specs[0].label}`;
     rooflineReferenceSummaryNode.textContent =
       `${scopeLabel}. ${selectedPrecision.toUpperCase()} roofs at default clocks. Expand for the hardware cards.`;
+
+    specs.slice(0, 3).forEach((spec) => {
+      const pill = document.createElement("div");
+      pill.className = "roofline-preview-pill";
+      pill.innerHTML = `
+        <span>${spec.device}</span>
+        <strong>${formatNumber(spec[`peak_${selectedPrecision}_tflops`], 2)} TFLOP/s</strong>
+      `;
+      rooflineReferencePreviewNode.appendChild(pill);
+    });
+
+    if (specs.length > 3) {
+      const extra = document.createElement("div");
+      extra.className = "roofline-preview-pill roofline-preview-pill-faint";
+      extra.innerHTML = `<span>more</span><strong>+${specs.length - 3} GPUs</strong>`;
+      rooflineReferencePreviewNode.appendChild(extra);
+    }
 
     specs.forEach((spec) => {
       const card = document.createElement("article");
