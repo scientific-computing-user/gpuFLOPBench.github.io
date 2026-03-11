@@ -596,24 +596,17 @@ main {
 .roofline-reference-panel {
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: clamp(360px, 32vw, 430px);
 }
 
-.roofline-reference-detail summary {
-  list-style: none;
-  cursor: pointer;
+.roofline-reference-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   padding: 18px;
-}
-
-.roofline-reference-detail summary::-webkit-details-marker {
-  display: none;
-}
-
-.roofline-reference-detail[open] summary {
-  background: rgba(145, 183, 255, 0.04);
   border-bottom: 1px solid rgba(145, 183, 255, 0.08);
 }
 
@@ -665,10 +658,12 @@ main {
 
 .roofline-reference-body {
   padding: 0 18px 18px;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .roofline-spec-scroll {
-  max-height: 240px;
+  height: 100%;
   overflow: auto;
   padding-top: 18px;
 }
@@ -951,9 +946,22 @@ td span {
     grid-template-columns: 1fr;
   }
 
-  .roofline-reference-detail summary {
+  .roofline-reference-panel {
+    height: auto;
+  }
+
+  .roofline-reference-head {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .roofline-reference-body {
+    flex: 0 0 auto;
+  }
+
+  .roofline-spec-scroll {
+    height: auto;
+    max-height: 280px;
   }
 
   .citation-actions {

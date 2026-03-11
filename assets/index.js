@@ -237,7 +237,7 @@
         ? "All devices"
         : `${specs[0].label}`;
     rooflineReferenceSummaryNode.textContent =
-      `${scopeLabel}. ${selectedPrecision.toUpperCase()} roofs at default clocks. Expand for the hardware cards.`;
+      `${scopeLabel}. ${selectedPrecision.toUpperCase()} roofs at default clocks. Scroll for the hardware cards.`;
 
     specs.slice(0, 3).forEach((spec) => {
       const pill = document.createElement("div");
